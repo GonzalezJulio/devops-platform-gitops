@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: devops-platform-deployment
+  namespace: devops-platform
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: devops-platform
+  template:
+    metadata:
+      labels:
+        app: devops-platform
+    spec:
+      containers:
+      - name: devops-platform-container
+        image: aresden113/devops-platform:v1
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 5000
+        env:
+        - name: ENVIRONMENT
+          value: "dev"
